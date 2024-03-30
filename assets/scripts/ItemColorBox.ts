@@ -19,7 +19,7 @@ export class ItemColorBox extends Component {
 
     startEvent() {
         this.nodeBox.on(Node.EventType.TOUCH_MOVE, (event : EventTouch) => {
-            let loc = event.GetUILocation();
+            let loc = event.getUILocation();
 
             if (!GameGlobal.srcManager.dragBox.active) {
                 GameGlobal.srcManager.dragBox.active = true;
@@ -32,7 +32,7 @@ export class ItemColorBox extends Component {
             if (loc.x > (this.defaultWorldPos.x + GameGlobal.widthBox*0.5) && this.rightId  == -1) this.setDefaultPos();
             if (loc.x < (this.defaultWorldPos.x - GameGlobal.widthBox*0.5) && this.leftId   == -1) this.setDefaultPos();
             if (loc.y > (this.defaultWorldPos.y + GameGlobal.widthBox*0.5) && this.topId    == -1) this.setDefaultPos();
-            if (loc.x < (this.defaultWorldPos.y - GameGlobal.widthBox*0.5) && this.bottomId == -1) this.setDefaultPos();
+            if (loc.y < (this.defaultWorldPos.x - GameGlobal.widthBox*0.8) && this.bottomId == -1) this.setDefaultPos();
         })
 
         this.nodeBox.on(Node.EventType.TOUCH_END, (event : EventTouch) => {
@@ -40,7 +40,7 @@ export class ItemColorBox extends Component {
         })
 
         this.nodeBox.on(Node.EventType.TOUCH_CANCEL, (event : EventTouch) => {
-            let loc = event.GetUILocation();
+            let loc = event.getUILocation();
 
             this.setDefaultPos();
 
@@ -49,10 +49,10 @@ export class ItemColorBox extends Component {
             if (loc.y > (this.defaultWorldPos.y + GameGlobal.widthBox*0.5) && this.topId    == -1) return;
             if (loc.x < (this.defaultWorldPos.y - GameGlobal.widthBox*0.5) && this.bottomId == -1) return;
 
-            if (loc.x >= (this.defaultWorldPos.x + GameGlobal.widthBox*0.5) && loc.x < (this.defaultWorldPos.x + GameGlobal.widthBox*1.5)) this.chagnePosRight();
-            else if (loc.x <  (this.defaultWorldPos.x - GameGlobal.widthBox*0.5) && loc.x > (this.defaultWorldPos.x - GameGlobal.widthBox*1.5)) this.chagnePosLeft();
-            else if (loc.y >  (this.defaultWorldPos.y + GameGlobal.widthBox*0.5) && loc.y < (this.defaultWorldPos.y + GameGlobal.widthBox*1.5)) this.chagnePosTop();
-            else if (loc.x >  (this.defaultWorldPos.x - GameGlobal.widthBox*0.5) && loc.x > (this.defaultWorldPos.y - GameGlobal.widthBox*1.5)) this.chagnePosBottom();
+            if (loc.x >= (this.defaultWorldPos.x + GameGlobal.widthBox*0.5) && loc.x < (this.defaultWorldPos.x + GameGlobal.widthBox*1.5)) this.changePosRight();
+            else if (loc.x <  (this.defaultWorldPos.x - GameGlobal.widthBox*0.5) && loc.x > (this.defaultWorldPos.x - GameGlobal.widthBox*1.5)) this.changePosLeft();
+            else if (loc.y >  (this.defaultWorldPos.y + GameGlobal.widthBox*0.5) && loc.y < (this.defaultWorldPos.y + GameGlobal.widthBox*1.5)) this.changePosTop();
+            else if (loc.x >  (this.defaultWorldPos.x - GameGlobal.widthBox*0.5) && loc.x > (this.defaultWorldPos.y - GameGlobal.widthBox*1.5)) this.changePosBottom();
         })
     }
 
@@ -109,7 +109,7 @@ export class ItemColorBox extends Component {
         if (this.idBox >= GameGlobal.colomX) this.topId = this.idBox - GameGlobal.colomX;
 
         //bottom
-        if (this.idBox >= (GameGlobal.colomX**2)-1) this.bottomId = this.idBox+GameGlobal.colomX;
+        if (this.idBox < (GameGlobal.colomX**2)-1) this.bottomId = this.idBox+GameGlobal.colomX;
 
         //left
         if (this.idBox > 0) {
