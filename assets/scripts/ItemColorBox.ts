@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Sprite, CCInteger, Vec3, Color, EventTouch } from 'cc';
+import { _decorator, Component, Node, Sprite, CCInteger, Vec3, Color, EventTouch, Label } from 'cc';
 const { ccclass, property } = _decorator;
 import { GameGlobal } from './GameGlobal';
 
@@ -6,6 +6,12 @@ import { GameGlobal } from './GameGlobal';
 export class ItemColorBox extends Component {
     @property(Node) nodeBox: Node = null!;
     @property(Sprite) spriteBox: Sprite = null!;
+    @property(Label) labelX: Label = null!;
+    @property(Label) labelY: Label = null!;
+    @property(Label) labelTop: Label = null!;
+    @property(Label) labelLeft: Label = null!;
+    @property(Label) labelRight: Label = null!;
+    @property(Label) labelBottom: Label = null!;
 
     @property(CCInteger) idBox: number = -1!;
     @property(CCInteger) idColor: number = -1!;
@@ -16,6 +22,18 @@ export class ItemColorBox extends Component {
 
     defaultPosition: Vec3 = null!;
     defaultWorldPos: Vec3 = null!;
+
+    setLabelXY(x,y): void {
+        this.labelX.string = x.toString();
+        this.labelY.string = y.toString();
+    }
+
+    setLabelSide(): void {
+        this.labelTop.string = this.topId.toString();
+        this.labelRight.string = this.rightId.toString();
+        this.labelLeft.string = this.leftId.toString();
+        this.labelBottom.string = this.bottomId.toString();
+    }
 
     startEvent() {
         this.nodeBox.on(Node.EventType.TOUCH_MOVE, (event : EventTouch) => {

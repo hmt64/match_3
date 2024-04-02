@@ -5,9 +5,9 @@ import { ItemColorBox } from './ItemColorBox';
 
 @ccclass('GameGlobal')
 export class GameGlobal extends Component {
-    static maxBox: number = 6;
-    static colomX: number = 3;
-    static colomY: number = 3;
+    static maxBox: number = 56;
+    static colomX: number = 8;
+    static colomY: number = 7;
     static listParentColorBox: Node[] = [];
     static listColorBox: Node[] = [];
     static listScriptColorBox: ItemColorBox[] = [];

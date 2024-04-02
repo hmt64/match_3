@@ -60,7 +60,7 @@ export class GameManager extends Component {
         for (let i = 0; i < GameGlobal.colomX; i++) {
             GameGlobal.listFirstRaw.push(i);
         }
-        console.log(GameGlobal.listFirstRaw)
+        
         for (let i = 0; i < GameGlobal.maxBox; i++) {
             let parentBox: Node = instantiate(this.prefabParentBox);
             let box: Node = instantiate(this.prefabBox);
@@ -76,7 +76,6 @@ export class GameManager extends Component {
             boxScript.idColor = this.randomColor();
             boxScript.spriteBox.color = this.colorBox[boxScript.idColor];
             boxScript.idBox = i;
-
             boxScript.startEvent();
             boxScript.getSidePos();
 
@@ -105,10 +104,14 @@ export class GameManager extends Component {
                 GameGlobal.listRawLimit.push(i);
                 GameGlobal.listAllColumn.push(arrColumn);
             }
+            boxScript.setLabelXY(i.toString(), boxScript.idColor.toString());
+            boxScript.setLabelSide();
+            console.log('i=',i)
+            console.log('boxScript.idColor=', boxScript.idColor)
         }
 
         setTimeout(() => {
-            this.runGameRules();
+            // this.runGameRules();
             // this.countDownTimer();
         },20*GameGlobal.maxBox);
     }
