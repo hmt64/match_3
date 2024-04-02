@@ -60,7 +60,7 @@ export class GameManager extends Component {
         for (let i = 0; i < GameGlobal.colomX; i++) {
             GameGlobal.listFirstRaw.push(i);
         }
-
+        console.log(GameGlobal.listFirstRaw)
         for (let i = 0; i < GameGlobal.maxBox; i++) {
             let parentBox: Node = instantiate(this.prefabParentBox);
             let box: Node = instantiate(this.prefabBox);
@@ -109,7 +109,7 @@ export class GameManager extends Component {
 
         setTimeout(() => {
             this.runGameRules();
-            this.countDownTimer();
+            // this.countDownTimer();
         },20*GameGlobal.maxBox);
     }
 
